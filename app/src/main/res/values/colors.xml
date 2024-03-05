@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="switch_thumb_off">#FFFFFF</color> <!-- Màu trắng khi tắt -->
+    <color name="switch_track_off">#B0BEC5</color> <!-- Màu xám khi tắt -->
+
+    <color name="switch_thumb_on">#012EB5</color> <!-- Màu xanh lam khi bật -->
+    <color name="switch_track_on">#7A96FF</color> <!-- Màu xanh lá cây khi bật -->
+</resources>
