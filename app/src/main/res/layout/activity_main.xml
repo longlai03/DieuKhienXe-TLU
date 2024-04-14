@@ -6,288 +6,301 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        android:text="&#64;2023-2024, Copyright by Thuy Loi University\nNghiên cứu khoa học lần thứ 37"
-        android:textAlignment="center"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainScreen"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ControlLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/InfoDeviceLayout">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/arrow_left_btn"
-            android:layout_width="104dp"
-            android:layout_height="104dp"
-            android:layout_marginEnd="1dp"
-            android:background="@color/black"
-            android:backgroundTint="#012EB5"
-            android:contentDescription="Nhấn để sang phải"
-            android:rotation="180"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="@+id/arrow_stop_btn"
-            app:layout_constraintEnd_toStartOf="@+id/arrow_stop_btn"
-            app:layout_constraintTop_toTopOf="@+id/arrow_stop_btn"
-            app:layout_constraintVertical_bias="0.504"
-            app:srcCompat="@android:drawable/ic_media_play"
-            app:tint="@color/white" />
-
-        <ImageButton
-            android:id="@+id/arrow_up_btn"
-            android:layout_width="104dp"
-            android:layout_height="105dp"
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="1dp"
-            android:background="@color/black"
-            android:backgroundTint="#012EB5"
-            android:contentDescription="Nhấn để tiến lên"
-            android:rotation="270"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toTopOf="@+id/arrow_stop_btn"
-            app:layout_constraintEnd_toEndOf="@+id/arrow_stop_btn"
-            app:layout_constraintHorizontal_bias="0.869"
-            app:layout_constraintStart_toStartOf="@+id/arrow_stop_btn"
-            app:srcCompat="@android:drawable/ic_media_play"
-            app:tint="@color/white" />
-
-        <ImageButton
-            android:id="@+id/arrow_right_btn"
-            android:layout_width="104dp"
-            android:layout_height="104dp"
-            android:layout_marginStart="1dp"
-            android:background="@color/black"
-            android:backgroundTint="#012EB5"
-            android:contentDescription="Nhấn để sang trái"
-            android:scaleType="fitCenter"
-            android:src="@android:drawable/ic_media_play"
-            app:layout_constraintBottom_toBottomOf="@+id/arrow_stop_btn"
-            app:layout_constraintStart_toEndOf="@+id/arrow_stop_btn"
-            app:layout_constraintTop_toTopOf="@+id/arrow_stop_btn"
-            app:tint="@color/white" />
-
-        <ImageButton
-            android:id="@+id/arrow_down_btn"
-            android:layout_width="104dp"
-            android:layout_height="104dp"
-            android:layout_marginTop="1dp"
-            android:background="@color/black"
-            android:backgroundTint="#012EB5"
-            android:contentDescription="Nhấn để lùi lại"
-            android:rotation="90"
-            android:scaleType="fitCenter"
-            android:src="@android:drawable/ic_media_play"
-            app:layout_constraintEnd_toEndOf="@+id/arrow_stop_btn"
-            app:layout_constraintStart_toStartOf="@+id/arrow_stop_btn"
-            app:layout_constraintTop_toBottomOf="@+id/arrow_stop_btn"
-            app:tint="@color/white" />
-
-        <ImageButton
-            android:id="@+id/arrow_stop_btn"
-            android:layout_width="104dp"
-            android:layout_height="104dp"
-            android:background="@color/black"
-            android:backgroundTint="#012EB5"
-            android:contentDescription="Nhấn để dừng lại"
+            android:text="&#64;2023-2024, Copyright by Thuy Loi University\nNghiên cứu khoa học lần thứ 37"
+            android:textAlignment="center"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-            app:layout_constraintVertical_bias="0.504"
-            app:srcCompat="@drawable/baseline_add_circle_24"
-            app:tint="#FFFFFF" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+            android:id="@+id/ControlLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/InfoDeviceLayout">
 
-            <TextView
-                android:id="@+id/CarMovementStateText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textSize="20sp"
-                android:textStyle="bold"
+            <ImageButton
+                android:id="@+id/arrow_left_btn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginEnd="1dp"
+                android:background="@color/black"
+                android:backgroundTint="#012EB5"
+                android:contentDescription="Nhấn để sang phải"
+                android:rotation="180"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="@+id/arrow_stop_btn"
+                app:layout_constraintEnd_toStartOf="@+id/arrow_stop_btn"
+                app:layout_constraintTop_toTopOf="@+id/arrow_stop_btn"
+                app:layout_constraintVertical_bias="0.504"
+                app:srcCompat="@android:drawable/ic_media_play"
+                app:tint="@color/white" />
+
+            <ImageButton
+                android:id="@+id/arrow_up_btn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginBottom="1dp"
+                android:background="@color/black"
+                android:backgroundTint="#012EB5"
+                android:contentDescription="Nhấn để tiến lên"
+                android:rotation="270"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toTopOf="@+id/arrow_stop_btn"
+                app:layout_constraintEnd_toEndOf="@+id/arrow_stop_btn"
+                app:layout_constraintHorizontal_bias="0.869"
+                app:layout_constraintStart_toStartOf="@+id/arrow_stop_btn"
+                app:srcCompat="@android:drawable/ic_media_play"
+                app:tint="@color/white" />
+
+            <ImageButton
+                android:id="@+id/arrow_right_btn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="1dp"
+                android:background="@color/black"
+                android:backgroundTint="#012EB5"
+                android:contentDescription="Nhấn để sang trái"
+                android:scaleType="fitCenter"
+                android:src="@android:drawable/ic_media_play"
+                app:layout_constraintBottom_toBottomOf="@+id/arrow_stop_btn"
+                app:layout_constraintStart_toEndOf="@+id/arrow_stop_btn"
+                app:layout_constraintTop_toTopOf="@+id/arrow_stop_btn"
+                app:tint="@color/white" />
+
+            <ImageButton
+                android:id="@+id/arrow_down_btn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/black"
+                android:backgroundTint="#012EB5"
+                android:contentDescription="Nhấn để lùi lại"
+                android:rotation="90"
+                android:scaleType="fitCenter"
+                android:src="@android:drawable/ic_media_play"
+                app:layout_constraintEnd_toEndOf="@+id/arrow_stop_btn"
+                app:layout_constraintStart_toStartOf="@+id/arrow_stop_btn"
+                app:layout_constraintTop_toBottomOf="@+id/arrow_stop_btn"
+                app:tint="@color/white" />
+
+            <ImageButton
+                android:id="@+id/arrow_stop_btn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/black"
+                android:backgroundTint="#012EB5"
+                android:contentDescription="Nhấn để dừng lại"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                app:layout_constraintVertical_bias="0.504"
+                app:srcCompat="@drawable/baseline_add_circle_24"
+                app:tint="#FFFFFF" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/CarMovementStateText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ConnectLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/StatusLayout">
+
+            <Button
+                android:id="@+id/connect_btn"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="3dp"
+                android:backgroundTint="#012EB5"
+                android:text="Kết nối bluetooth"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/disconnect_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/disconnect_btn"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="#012EB5"
+                android:text="Ngắt kết nối"
+                app:layout_constraintBottom_toBottomOf="@+id/connect_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/connect_btn"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ConnectLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/StatusLayout">
-
-        <Button
-            android:id="@+id/connect_btn"
-            android:layout_width="120dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="3dp"
-            android:backgroundTint="#012EB5"
-            android:text="Kết nối bluetooth"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/disconnect_btn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/disconnect_btn"
-            android:layout_width="120dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="3dp"
-            android:layout_marginEnd="10dp"
-            android:backgroundTint="#012EB5"
-            android:text="Ngắt kết nối"
-            app:layout_constraintBottom_toBottomOf="@+id/connect_btn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/connect_btn"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/StatusLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PictureLayout">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/StatusLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="1dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:text="Trạng thái: "
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/statusText"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <TextView
-            android:id="@+id/statusText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="30dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:text="Chưa kết nối"
-            android:textColor="#FF0000"
-            android:textSize="24sp"
-            android:textStyle="normal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/PictureLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/resource_long" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/PictureLayout">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/InfoDeviceLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ConnectLayout">
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="1dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:text="Trạng thái: "
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/statusText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
-        <TextView
-            android:id="@+id/DeviceTitle"
+            <TextView
+                android:id="@+id/statusText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="30dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:text="Chưa kết nối"
+                android:textColor="#FF0000"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/PictureLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/DeviceName"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/resource_long" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/InfoDeviceLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/DeviceTitle" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/ConnectLayout">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/FunctionLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ControlLayout">
+            <TextView
+                android:id="@+id/DeviceTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Switch
-            android:id="@+id/line_dectection_switch"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/DeviceName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/DeviceTitle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/FunctionLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Dò đường tự động"
-            android:thumbTint="@color/switch_thumb_selector"
-            android:trackTint="@color/switch_track_selector"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/ControlLayout">
+
+            <Switch
+                android:id="@+id/line_dectection_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dò đường tự động"
+                android:textSize="16sp"
+                android:thumbTint="@color/switch_thumb_selector"
+                android:trackTint="@color/switch_track_selector"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
