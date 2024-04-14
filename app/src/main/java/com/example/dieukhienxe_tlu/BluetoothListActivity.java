@@ -57,7 +57,8 @@ public class BluetoothListActivity extends AppCompatActivity implements AdapterV
         switchDevice = findViewById(R.id.switch_device);
 
         if (bluetoothAdapter == null) {
-            Toast.makeText(this, "Thiết bị không hỗ trợ Bluetooth", Toast.LENGTH_SHORT).show();
+            currentToast = Toast.makeText(this, "Thiết bị không hỗ trợ Bluetooth", Toast.LENGTH_SHORT);
+            currentToast.show();
             finish();
             return;
         }
@@ -140,7 +141,8 @@ public class BluetoothListActivity extends AppCompatActivity implements AdapterV
     @SuppressLint("MissingPermission")
     private void startDiscovery() {
         if (!bluetoothAdapter.isEnabled()) {
-            Toast.makeText(this, "Bluetooth chưa được bật", Toast.LENGTH_SHORT).show();
+            currentToast = Toast.makeText(this, "Bluetooth chưa được bật", Toast.LENGTH_SHORT);
+            currentToast.show();
         }
         deviceListAdapter.clear();
         detectedDevices.clear();

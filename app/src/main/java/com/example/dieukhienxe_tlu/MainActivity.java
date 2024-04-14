@@ -15,7 +15,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,16 +27,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener, CompoundButton.OnCheckedChangeListener {
     static final int REQUEST_ENABLE_BT = 2;
     static final int REQUEST_PERMISSIONS = 3;
     static final int REQUEST_SELECT_DEVICE = 4;
-    private static final int REQUEST_BLUETOOTH_CONNECTION = 1;
+    private Toast currentToast;
     private BluetoothAdapter bluetoothAdapter;
     private BluetoothDevice bluetoothDevice;
     private Button Connect_btn, Disconnect_btn;
     private ImageButton arrow_up_btn, arrow_down_btn, arrow_left_btn, arrow_right_btn;
     private TextView statusText, CarMovementStateText, DeviceName, DeviceTitle;
+    private Switch lineDectectionSwitch;
     private MyBluetoothService bluetoothService;
     private Handler handler;
 
@@ -45,20 +48,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         getView();
 
-        // Set OnClickListener for buttons
+
         Connect_btn.setOnClickListener(this);
         Disconnect_btn.setOnClickListener(this);
 
-        // Set OnTouchListener for image buttons
         arrow_up_btn.setOnTouchListener(this);
         arrow_down_btn.setOnTouchListener(this);
         arrow_left_btn.setOnTouchListener(this);
         arrow_right_btn.setOnTouchListener(this);
 
+        lineDectectionSwitch.setOnCheckedChangeListener(this);
+
 
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (bluetoothAdapter == null) {
-            Toast.makeText(this, "Thiết bị không hỗ trợ Bluetooth", Toast.LENGTH_SHORT).show();
+            currentToast = Toast.makeText(this, "Thiết bị không hỗ trợ Bluetooth", Toast.LENGTH_SHORT);
+            currentToast.show();
             return;
         }
 
@@ -105,7 +110,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivityForResult(bluetoothConnectIntent, REQUEST_SELECT_DEVICE);
             } else {
                 // Người dùng từ chối bật Bluetooth
-                Toast.makeText(this, "Bạn đã từ chối bật Bluetooth", Toast.LENGTH_SHORT).show();
+                currentToast = Toast.makeText(this, "Hãy bật Bluetooth để tiếp tục", Toast.LENGTH_SHORT);
+                currentToast.show();
             }
         } else if (requestCode == REQUEST_SELECT_DEVICE) {
             if (resultCode == RESULT_OK) {
@@ -120,16 +126,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             super.handleMessage(msg);
                             switch (msg.what) {
                                 case MyBluetoothService.MessageConstants.MESSAGE_READ:
-                                    // Handle message read
-                                    // Xử lý dữ liệu nhận được từ kết nối Bluetooth ở đây
                                     byte[] readBuffer = (byte[]) msg.obj;
                                     int numBytes = msg.arg1;
                                     break;
                                 case MyBluetoothService.MessageConstants.MESSAGE_WRITE:
-                                    // Handle message write
                                     break;
                                 case MyBluetoothService.MessageConstants.MESSAGE_TOAST:
-                                    // Handle toast message
                                     String message = (String) msg.obj;
                                     Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
                                     if (message.equals("Kết nối thành công")) {
@@ -152,11 +154,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     bluetoothService = new MyBluetoothService(handler, bluetoothAdapter);
                     bluetoothService.connectDevice(bluetoothDevice);
                 } else {
-                    Toast.makeText(this, "Lỗi kết nối Bluetooth", Toast.LENGTH_SHORT).show();
+                    currentToast = Toast.makeText(this, "Lỗi kết nối Bluetooth", Toast.LENGTH_SHORT);
+                    currentToast.show();
                 }
             } else {
                 // Người dùng từ chối hoặc có lỗi xảy ra
-                Toast.makeText(this, "Không thể chọn thiết bị", Toast.LENGTH_SHORT).show();
+                currentToast = Toast.makeText(this, "Không thể chọn thiết bị", Toast.LENGTH_SHORT);
+                currentToast.show();
             }
         }
     }
@@ -182,7 +186,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             bluetoothService.disconnect();
         }
         if (bluetoothAdapter.isEnabled()) {
-            Toast.makeText(MainActivity.this, "Bluetooth đã được tắt", Toast.LENGTH_SHORT).show();
+            currentToast = Toast.makeText(MainActivity.this, "Bluetooth đã được tắt", Toast.LENGTH_SHORT);
+            currentToast.show();
             bluetoothAdapter.disable();
         } else {
             Toast.makeText(MainActivity.this, "Bluetooth hiện không bật", Toast.LENGTH_SHORT).show();
@@ -205,7 +210,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivityForResult(bluetoothConnectIntent, REQUEST_SELECT_DEVICE);
             }
         } else if (v.getId() == R.id.disconnect_btn) {
-            //Ngắt kết nối Bluetooth
             DisconnectedBluetooth();
         }
     }
@@ -216,39 +220,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 setStatusText("Tiến");
                 // Gửi dữ liệu điều khiển điều khiển xe khi nút TIẾN được nhấn
-                sendData("TIEN".getBytes());
+                sendData("a");
             } else if (event.getAction() == MotionEvent.ACTION_UP) {
                 CarMovementStateText.setText("");
+                sendData("e");
             }
         } else if (v.getId() == R.id.arrow_down_btn) {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 setStatusText("Lùi");
                 // Gửi dữ liệu điều khiển điều khiển xe khi nút TIẾN được nhấn
-                sendData("LUI".getBytes());
+                sendData("b");
             } else if (event.getAction() == MotionEvent.ACTION_UP) {
                 CarMovementStateText.setText("");
+                sendData("e");
             }
         } else if (v.getId() == R.id.arrow_left_btn) {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 setStatusText("Trái");
                 // Gửi dữ liệu điều khiển điều khiển xe khi nút TIẾN được nhấn
-                sendData("TRAI".getBytes());
+                sendData("c");
             } else if (event.getAction() == MotionEvent.ACTION_UP) {
                 CarMovementStateText.setText("");
+                sendData("e");
             }
         } else if (v.getId() == R.id.arrow_right_btn) {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 setStatusText("Phải");
                 // Gửi dữ liệu điều khiển điều khiển xe khi nút TIẾN được nhấn
-                sendData("PHAI".getBytes());
+                sendData("d");
             } else if (event.getAction() == MotionEvent.ACTION_UP) {
                 CarMovementStateText.setText("");
+                sendData("e");
             }
         } else if (v.getId() == R.id.arrow_stop_btn) {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 setStatusText("Dừng");
                 // Gửi dữ liệu điều khiển điều khiển xe khi nút TIẾN được nhấn
-                sendData("DUNG".getBytes());
+                sendData("e");
             } else if (event.getAction() == MotionEvent.ACTION_UP) {
                 CarMovementStateText.setText("");
             }
@@ -256,12 +264,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return false;
     }
 
-    private void sendData(byte[] data) {
-        // Gọi phương thức sendData từ MyBluetoothService (nếu có)
+    private void sendData(String index) {
+        byte[] data = index.getBytes();
         if (bluetoothService != null) {
             bluetoothService.sendData(data);
         } else {
-            Toast.makeText(this, "Không thể gửi tín hiệu", Toast.LENGTH_SHORT).show();
+            currentToast = Toast.makeText(this, "Không thể gửi tín hiệu", Toast.LENGTH_SHORT);
+            currentToast.show();
         }
     }
 
@@ -286,12 +295,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         arrow_down_btn = findViewById(R.id.arrow_down_btn);
         arrow_left_btn = findViewById(R.id.arrow_left_btn);
         arrow_right_btn = findViewById(R.id.arrow_right_btn);
+        lineDectectionSwitch = findViewById(R.id.line_dectection_switch);
     }
 
+    @SuppressLint("MissingPermission")
     protected void onDestroy() {
         super.onDestroy();
         if (bluetoothService != null) {
             bluetoothService.disconnect();
         }
+        if (bluetoothAdapter.isEnabled()) {
+            bluetoothAdapter.disable();
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (buttonView.getId() == R.id.line_dectection_switch) {
+            if (isChecked) {
+                if (bluetoothAdapter.isEnabled()) {
+                    sendData("f");
+                    CarMovementStateText.setText("Tự động dò line!");
+                    currentToast = Toast.makeText(MainActivity.this, "Đã bật chế độ tự động dò line", Toast.LENGTH_SHORT);
+                    currentToast.show();
+                    ButtonDisable();
+                } else {
+                    sendData("e");
+                    currentToast = Toast.makeText(MainActivity.this, "Hãy bật Bluetooth để sử dụng chức năng ", Toast.LENGTH_SHORT);
+                    currentToast.show();
+                    buttonView.setChecked(false);
+                }
+            } else {
+                sendData("e");
+                CarMovementStateText.setText("");
+                currentToast = Toast.makeText(MainActivity.this, "Đã tắt chế độ tự động dò line", Toast.LENGTH_SHORT);
+                currentToast.show();
+                ButtonEnable();
+            }
+        }
+    }
+
+    private void ButtonDisable() {
+        arrow_up_btn.setEnabled(false);
+        arrow_down_btn.setEnabled(false);
+        arrow_left_btn.setEnabled(false);
+        arrow_right_btn.setEnabled(false);
+    }
+
+    private void ButtonEnable() {
+        arrow_up_btn.setEnabled(true);
+        arrow_down_btn.setEnabled(true);
+        arrow_left_btn.setEnabled(true);
+        arrow_right_btn.setEnabled(true);
     }
 }

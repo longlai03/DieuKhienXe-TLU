@@ -15,7 +15,7 @@ import java.util.UUID;
 public class MyBluetoothService {
     private static final String TAG = "MY_APP_DEBUG_TAG";
     //UUID này đại diện cho dịch vụ Generic Attribute Profile (GATT)
-    private static final UUID MY_UUID = UUID.fromString("00001108-0000-1000-8000-00805f9b34fb");
+    private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     private final BluetoothAdapter bluetoothAdapter;
     private final Handler handler;
     private ConnectThread connectThread;
