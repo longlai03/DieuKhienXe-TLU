@@ -292,14 +292,41 @@
                 android:id="@+id/line_dectection_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dò đường tự động"
+                android:layout_marginEnd="1dp"
+                android:text="Dò line"
                 android:textSize="16sp"
                 android:thumbTint="@color/switch_thumb_selector"
                 android:trackTint="@color/switch_track_selector"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/avoid_object_switch"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <Switch
+                android:id="@+id/line_dectection_and_avoid_dectection_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Dò line + Tránh vật cản"
+                android:textSize="16sp"
+                android:thumbTint="@color/switch_thumb_selector"
+                android:trackTint="@color/switch_track_selector"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line_dectection_switch" />
+
+            <Switch
+                android:id="@+id/avoid_object_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:text="Tránh vật cản"
+                android:textSize="16sp"
+                android:thumbTint="@color/switch_thumb_selector"
+                android:trackTint="@color/switch_track_selector"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/line_dectection_switch"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

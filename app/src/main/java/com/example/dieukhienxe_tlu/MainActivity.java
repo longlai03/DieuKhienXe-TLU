@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button Connect_btn, Disconnect_btn;
     private ImageButton arrow_up_btn, arrow_down_btn, arrow_left_btn, arrow_right_btn, stop_btn;
     private TextView statusText, CarMovementStateText, DeviceName, DeviceTitle;
-    private Switch lineDectectionSwitch;
+    private Switch lineDectectionSwitch, avoidObjectSwitch, lineDectectionSwitch_And_avoidObjectSwitch;
     private MyBluetoothService bluetoothService;
     private Handler handler;
 
@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         stop_btn.setOnTouchListener(this);
 
         lineDectectionSwitch.setOnCheckedChangeListener(this);
+        avoidObjectSwitch.setOnCheckedChangeListener(this);
+        lineDectectionSwitch_And_avoidObjectSwitch.setOnCheckedChangeListener(this);
 
 
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -233,7 +235,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v.getId() == R.id.arrow_left_btn) {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 setStatusText("Trái");
-                sendData("c");
+                sendData("d");
             } else if (event.getAction() == MotionEvent.ACTION_UP) {
                 CarMovementStateText.setText("");
                 sendData("e");
@@ -241,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v.getId() == R.id.arrow_right_btn) {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 setStatusText("Phải");
-                sendData("d");
+                sendData("c");
             } else if (event.getAction() == MotionEvent.ACTION_UP) {
                 CarMovementStateText.setText("");
                 sendData("e");
@@ -289,17 +291,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         arrow_right_btn = findViewById(R.id.arrow_right_btn);
         stop_btn = findViewById(R.id.arrow_stop_btn);
         lineDectectionSwitch = findViewById(R.id.line_dectection_switch);
-    }
-
-    @SuppressLint("MissingPermission")
-    protected void onDestroy() {
-        super.onDestroy();
-        if (bluetoothService != null) {
-            bluetoothService.disconnect();
-        }
-        if (bluetoothAdapter.isEnabled()) {
-            bluetoothAdapter.disable();
-        }
+        avoidObjectSwitch = findViewById(R.id.avoid_object_switch);
+        lineDectectionSwitch_And_avoidObjectSwitch = findViewById(R.id.line_dectection_and_avoid_dectection_switch);
     }
 
     @Override
@@ -313,13 +306,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     showToast("Đã bật chế độ tự động dò line");
                     ButtonDisable();
                 } else {
-                    showToast("Hãy bật Bluetooth để sử dụng chức năng này");
+                    showToast("Hãy bật Bluetooth để sử dụng chức năng dò line");
                     buttonView.setChecked(false);
                 }
             } else {
-                sendData("e");
+                sendData("g");
                 CarMovementStateText.setText("");
                 showToast("Đã tắt chế độ tự động dò line");
+                ButtonEnable();
+            }
+        } else if (buttonView.getId() == R.id.avoid_object_switch) {
+            if (isChecked) {
+                if (bluetoothAdapter.isEnabled()) {
+                    sendData("h");
+                    CarMovementStateText.setText("Tránh vật cản!");
+                    CarMovementStateText.setTextColor(Color.parseColor("#c8a900"));
+                    showToast("Đã bật chế độ tự động tránh vật cản");
+                    ButtonDisable();
+                } else {
+                    showToast("Hãy bật Bluetooth để sử dụng chức năng tránh vật cản");
+                    buttonView.setChecked(false);
+                }
+            } else {
+                sendData("i");
+                CarMovementStateText.setText("");
+                showToast("Đã tắt chế độ tự động tránh vật cản");
+                ButtonEnable();
+            }
+        } else if (buttonView.getId() == R.id.line_dectection_and_avoid_dectection_switch) {
+            if (isChecked) {
+                if (bluetoothAdapter.isEnabled()) {
+                    sendData("k");
+                    CarMovementStateText.setText("Dò line và tránh vật cản!");
+                    CarMovementStateText.setTextColor(Color.parseColor("#c8a900"));
+                    showToast("Đã bật chế độ tự động dò line và tránh vật cản");
+                    ButtonDisable();
+                } else {
+                    showToast("Hãy bật Bluetooth để sử dụng chức năng dò line và tránh vật cản");
+                    buttonView.setChecked(false);
+                }
+            } else {
+                sendData("l");
+                CarMovementStateText.setText("");
+                showToast("Đã tắt chế độ tự động dò line và tránh vật cản");
                 ButtonEnable();
             }
         }
@@ -348,5 +377,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Tạo và hiển thị Toast mới
         currentToast = Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT);
         currentToast.show();
+    }
+    @SuppressLint("MissingPermission")
+    protected void onDestroy() {
+        super.onDestroy();
+        if (bluetoothService != null) {
+            sendData("e");
+            bluetoothService.disconnect();
+        }
+        if (bluetoothAdapter.isEnabled()) {
+            bluetoothAdapter.disable();
+        }
     }
 }
